@@ -1,20 +1,12 @@
-﻿using UnityEngine;
-using Simplex;
-using System;
-
-namespace Generation
-{
-    public class CanyonGenerator : AbstractGenerator
+﻿
+namespace Generation {
+    public class CanyonGenerator : SimpleBaseGenerator
     {
-        private System.Random rand;
-        private int seed;
+        private const int COLOR_SAMPLING = 128;
 
-        public CanyonGenerator(int? _seed = null)
+        public CanyonGenerator(int? _seed = null) : base(_seed)
         {
-            var defaultValue = (int)DateTime.Now.GetHashCode() & 0x0000FFFF;
-            seed = _seed.GetValueOrDefault(defaultValue);
-            Noise.Seed = seed;
-            rand = new System.Random(seed);
+            SeaLevel = 0;
         }
 
         public override void Run()
@@ -27,25 +19,5 @@ namespace Generation
             HeightOperations.SimpleFlattenTopAndBottom(map);
         }
 
-        public override Texture2D GetPreview(Gradient colors)
-        {
-            Texture2D tex = new Texture2D(map.width, map.length);
-            float[,] tau = map.Height_Ratio_Map;
-
-            for (int i = 0; i < map.width; i++)
-            {
-                for (int j = 0; j < map.length; j++)
-                {
-                    tex.SetPixel(i, j, colors.Evaluate(tau[i, j]));
-                }
-            }
-
-            tex.Apply();
-            tex.wrapMode = TextureWrapMode.Clamp;
-            tex.filterMode = FilterMode.Point;
-            tex.name = "Procedural texture";
-
-            return tex;
-        }
     }
 }
