@@ -9,15 +9,11 @@ namespace Generation {
 		private const float SEA_LEVEl = 0.25f;
 		private const int COLOR_SAMPLING = 128;
 
-		public CoastalMountainGenerator() {
-			seed = (int) DateTime.Now.GetHashCode() & 0x0000FFFF;
-			Noise.Seed = seed;
-			rand = new System.Random(seed);
-		}
-
-		public CoastalMountainGenerator(int _seed) {
-			seed = _seed;
-			Noise.Seed = seed;
+        public CoastalMountainGenerator(int? _seed = null)
+        {
+            var defaultValue = (int)DateTime.Now.GetHashCode() & 0x0000FFFF;
+            seed = _seed.GetValueOrDefault(defaultValue);
+            Noise.Seed = seed;
 			rand = new System.Random(seed);
 		}
 

@@ -59,34 +59,22 @@ namespace Generation {
 		}
 
 		private void SetGenerator() {
-			if(use_seed)
-				switch(type) {
-				case GeneratorType.CANYON:
-					generator = new CanyonGenerator(seed);
-					break;
+            int? cur_seed = null;
+            if (use_seed) cur_seed = seed;
 
-				case GeneratorType.COASTAL_MOUNTAIN:
-					generator = new CoastalMountainGenerator(seed);
-					break;
+			switch(type) {
+			case GeneratorType.CANYON:
+				generator = new CanyonGenerator(cur_seed);
+				break;
 
-				default:
-					generator = new CoastalMountainGenerator(seed);
-					break;
-				}
-			else
-				switch(type) {
-				case GeneratorType.CANYON:
-					generator = new CanyonGenerator();
-					break;
+			case GeneratorType.COASTAL_MOUNTAIN:
+				generator = new CoastalMountainGenerator(cur_seed);
+				break;
 
-				case GeneratorType.COASTAL_MOUNTAIN:
-					generator = new CoastalMountainGenerator();
-					break;
-
-				default:
-					generator = new CoastalMountainGenerator();
-					break;
-				}
+			default:
+				generator = new CoastalMountainGenerator(cur_seed);
+				break;
+			}
 
 			generator.UseMap(map);
 		}
