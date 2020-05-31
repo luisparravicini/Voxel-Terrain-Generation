@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public struct Voxel {
+﻿public struct Voxel {
 	public bool empty;
 	public byte pos_x, pos_y, pos_z, color;
 

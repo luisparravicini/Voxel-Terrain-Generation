@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class Tile {
+﻿public class Tile {
 	public int x, y;
 	public float height;
 
