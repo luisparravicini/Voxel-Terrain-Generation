@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using NUnit.Framework;
 using Generation;
 
 [CustomEditor(typeof(GeneratorScript))]

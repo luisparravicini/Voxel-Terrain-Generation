@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using VOXParsing;
 using System;
-using System.Linq;
 using Simplex;
 
 namespace Generation {
